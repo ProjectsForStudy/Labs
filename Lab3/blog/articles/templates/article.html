@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ post.title }} - Мой Блог</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/article.css' %}" />
+  </head>
+  <body class="article-page">
+    <div class="article-container">
+      <a href="{% url 'archive' %}" class="back-link">← Назад к архиву</a>
+
+      <h1 class="article-title">{{ post.title }}</h1>
+
+      <div class="article-meta">
+        <div class="meta-item">
+          <span class="meta-label">Автор</span>
+          <span class="meta-value">👦 {{ post.author.username }}</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Дата публикации</span>
+          <span class="meta-value">📅 {{ post.created_date }}</span>
+        </div>
+      </div>
+
+      <div class="article-full-text">{{ post.text|linebreaks }}</div>
+    </div>
+  </body>
+</html>

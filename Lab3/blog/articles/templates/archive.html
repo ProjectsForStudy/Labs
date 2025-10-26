@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Архив статей - Мой Блог</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="{% static 'img/logo.png' %}" alt="Логотип блога" />
+      </div>
+
+      <h1 class="page-title">Архив статей</h1>
+
+      <div class="articles-list">
+        {% for post in posts %}
+        <article class="one-post">
+          <div class="post-title">
+            <a href="{% url 'get_article' article_id=post.id %}"
+              >{{ post.title }}</a
+            >
+          </div>
+
+          <div class="article-info">
+            <div class="article-author">👦 {{ post.author.username }}</div>
+            <div class="article-created-date">📅 {{ post.created_date }}</div>
+          </div>
+
+          <p class="article-text">{{ post.get_excerpt }}</p>
+        </article>
+        {% empty %}
+        <div class="one-post">
+          <p class="article-text" style="text-align: center">Пока нет статей</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
